@@ -45,39 +45,8 @@ const messageEl = document.querySelector('#message')
 
 
 /*-------------------------------- Functions --------------------------------*/
-function placePiece(index){
-
-}
-
-function checkForWinner(){
-    if(winningCombos.includes(playerX.sort())){
-        winner = true
-        console.log("X wins")
-    }
-    if(winningCombos.includes(playerO.sort())){
-        winner = true
-        console.log("O wins")
-    }
-    else{
-        winner = false
-        console.log("keep playing")
-    }
-}
-
-function switchPlayers(){
-    if(turn == 'X'){
-        turn = 'O'
-    }
-    if(turn == 'O'){
-        turn = 'X'
-    } else{
-        return
-    }
-}
-
-function handleClick(event){
-    console.log('clicked me', event)
-    // when i click, i want it to spit out which square i clicked, so i can compare it to my winning combos
+function placePiece(event){
+    // when i click, i want it to spit out which square i clicked
     const squareIndex = event.target.id
     console.log(squareIndex)
     //check the array at the index you clicked
@@ -93,11 +62,62 @@ function handleClick(event){
         playerO.push(squareIndex)
         }
     }
+}
+
+function checkForWinner(){
+    //look through the winningcombos array
+    for(let i=0; i < winningCombos.length; i++){
+        //then through the arrays inside
+        for(let j=0; j < winningCombos[i].length; j++){
+        //if the j has something in the playerX array
+        if(winningCombos[i][j].includes(playerX))
+        winner = true
+        console.log("X wins")}
+    }
+    
+    if(winningCombos.includes(playerO.sort())){
+        winner = true
+        console.log("O wins")
+    }
+    else{
+        winner = false
+        console.log("keep playing")
+    }
+}
+
+// function switchPlayers(){
+//     if(turn == 'X'){
+//         turn = 'O'
+//     } else{
+//         turn = 'X'
+//     }
+// }
+
+function handleClick(event){
+    console.log('clicked here', event)
+    // // when i click, i want it to spit out which square i clicked
+    // const squareIndex = event.target.id
+    // console.log(squareIndex)
+    // //check the array at the index you clicked
+    // if(board[squareIndex] != ''){
+    //     return
+    // } else {
+    //  board[squareIndex] = turn
+    //  console.log(board[squareIndex])
+    //  updateBoard()
+    //  if(turn == 'X'){ 
+    //     playerX.push(squareIndex)
+    //     }else if(turn == 'O'){
+    //     playerO.push(squareIndex)
+    //     }
+    // }
+    placePiece()
+    
     console.log(playerX, playerO)
     //then check the current player's array vs the winning combos to spit out boolean for winner
     checkForWinner()
     if(winner == false && tie == false){
-        switchPlayers()
+        // switchPlayers()
     }
     updateMessage()
 }
@@ -129,12 +149,14 @@ function updateMessage(){
         messageEl.innerText = `tie game.`
     } else { messageEl.innerText = ` is the winner.`}
 }
-
+function firstPlayer(){
+    const randomIndex = Math.floor(Math.random())
+    const player = ['X', 'O']
+    turn = player[randomIndex]
+}
 
 function init(){
-
-
-
+    firstPlayer()
     render()
 }
 
