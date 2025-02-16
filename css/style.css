@@ -1,8 +1,11 @@
 body {
-    background-color: gainsboro;
+    background-color: #5F9A80;
     /* Use a system font, if none are available use an available sans-sarif */
-    font-family: system-ui, sans-serif;
-    margin: 0;
+    font-family: "Fredericka the Great", serif, system-ui, sans-serif;
+    color: antiquewhite;
+    font-size: large;
+    margin-top: 0%;
+    margin-left: 20%;
   }
   
   .board {
@@ -15,8 +18,24 @@ body {
   .sqr {
     width: 30%;
     aspect-ratio: 1/1;
-    border: 3px solid black;
+    border: 2px dotted white;
     font-size: 64px;
     text-align: center;
   }
-  
+.board :hover{
+  border: 3px solid
+}
+
+#turnCounter {
+  display: inline;
+}
+
+h1{
+  padding: 10px;}
+
+#reset{
+  margin-left: 20px;
+  font-size: x-large;
+  text-align: center;
+  padding: 10px 0 10px 0;
+}
