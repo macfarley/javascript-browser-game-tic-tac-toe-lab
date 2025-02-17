@@ -65,7 +65,12 @@ function init(){
         board[i] = ''
     }
     updateBoard()
-    turn = 'X'
+    const firstPlayer = () => {
+        let players = ['X', 'O']
+        const randomIndex = Math.floor(Math.random() * 2);
+        turn = players[randomIndex];
+    };
+    firstPlayer()
     messageEL.innerHTML = `New Game.`
     currentTurnEl.innerHTML = `It's ${turn}'s turn.`
     console.log('game loaded')
